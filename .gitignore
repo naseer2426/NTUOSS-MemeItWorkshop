@@ -2,3 +2,9 @@
 
 ./image_detection/env
 ./image_detection/images/**
+__pycache__
+Database/images
+Image_Processing/.ipynb_checkpoints
+Telegram_Images
+Presentation-Images
+

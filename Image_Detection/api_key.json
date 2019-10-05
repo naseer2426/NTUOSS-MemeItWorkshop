@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "meme-it-workshop",
+  "private_key_id": "7da6199b3e9810e0b13fb467c754578d70fe8e89",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQC0+kNryVDxstzQ\nyqDkNgjB0gtqeBM4epqm2pgmXjNu8bIL1wmKHxofSAq+az+z3gP6n6CMtnzX6WwW\n5fHNJi7fvYt2SxS7yxJM8zZMAWPZkcqp+kwrmDLjxG1c+36uOVtXi5yaIljvhpFv\nET2Y0jK1+tE8XWzq4Q/H0pxwk2egj06/Qa/zY0glX54Uk+Vs7ASR9zveQllER2gF\nvMSa81DZuJMh2qhbFrEGiTcNa1/G0h/IMoKKZPTNwKE1Gvq4vIFvdlDXTT000Tll\nJe2nXE1XRSfM47LGdn7ZidqUStgqWt7obbxkHJ1hC5n9weyanI/+dirrVYhL692S\n2DhOvIirAgMBAAECggEAAlvsNjUxBhD3YQzMRmQifs1v14QFwLBvTe6jh2EUHfxl\nIuXNjONeVF/Fv4JC9Syyj3AR0WhR2W6o8FN5TABwj2juQQh/OvpNijIajxaA+rNY\n9PP7cjO+1hOFaW4Erd1Jic+/gkUhffAajTeDvpvxHm0DtTdyjJZl4kM4jtOvW0Rr\nBjQDSf94tndF+rFotGMCTBR0COpvqF/AkRYhCXWlIOi6nza3CPQDEz2hsywfSNg+\nuVUXIDLDmpb4FiOr4ELM0ql6RgtnVTji40EPtHAQ+znTcSxeMqtNYJyu3Jb9NJlM\nAYyGkbXbPeQor8eRFA5xc6vEr9bQ4AsYH6KFUs/CQQKBgQDxL2VVC7HQUyfP5O+U\nPETmd4Y7idDGd859THQUSNRXY7KBaiaP758s97V9Gi7X1eVZZDi/ohfKYgZ2IrJa\nXyQVPNGz6HMoSaqqQdFzBQSMY8GHEKy0TJOgUqYElBHHApnpbGPrmFeCQlRrf2E4\nowpcIuZPTZaFWJaoTa5ubihSkwKBgQDAGByivGYq3mFIX8WL5mvr3HxEwc8Rh0xI\n0wSVuyRdCnGTXIwJc0lxyccdimglMJhQG0FfX/Gc6ltbXwY+76dWhrdXCkLPCZCx\ng8B/1fQulYUN8S8iYc5OirmG2adR1dZahJyzs1Oh9aB9n7Fw9HYCl7qPXKdWg4Yh\nyZfzFrVIiQKBgQDgf9iX6DHUk4LMbfJgDhWoXPtysh7GjsCDO0YVl5En4yJGelN4\nyXhl+BFUaKnPuEcrBTIZlr0EYmhXUIapvkOtDRa5mxaOGrwkjO10XehU8Yozud64\nWUtVAXmNa3J8xzwS3hTION7D3hAMm94YRRMgnk+446THbKWX9e721czsxwKBgA1/\nZDu3G0K134YTXLEo3rpzArReHeuwYxbW5QKUZMi43CQro5diZ228bOZRfGHomTs/\nvwcxmauZ+BNiiPDRLCPzUVynVuxvUqB2joctBHxlezTwloxG7RUtwD2Oe6hPa0Fv\nAgfKePzvYniRSQmT09r4yF4cd5Gnqjwjiy7EkLZpAoGBAMmDT3fVgtKE2tI+sGAl\nftc9S5ztSCQwyKVWuwPdLw9wFrOPM0WlcT5/noBYFr1dmIveD0N7jCv/SbkOD1y1\nxKJAaKeCyoG2K1f1/1ZI8ynl4g/OoxGo5BENgkNRgvoRP9VmU3QdS/WCmT9jQbfj\n5DNZ7f7V+F/Y9iONDgT8MdKu\n-----END PRIVATE KEY-----\n",
+  "client_email": "memeit@meme-it-workshop.iam.gserviceaccount.com",
+  "client_id": "114464858474875435889",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/memeit%40meme-it-workshop.iam.gserviceaccount.com"
+}

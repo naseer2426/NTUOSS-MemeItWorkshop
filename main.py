@@ -72,7 +72,7 @@ def handle_images(update,context):
 
     # rank the labels to find the text of best fit
     picture_text = best_text(labels)
-    # print(picture_text)
+
     # make an image with the caption
     make_meme("",picture_text,downloaded_file)
     make_meme(picture_text,"",downloaded_file,2)

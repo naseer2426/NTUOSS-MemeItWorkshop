@@ -1,8 +1,10 @@
 from selenium import webdriver
 import wget
+import os
 subreddits_file = open("subreddits.txt","r")
 subreddits = subreddits_file.read().split('\n')
 print(subreddits)
+os.system("mkdir images")
 image_path = "./images"
 total_images = 0
 driver = webdriver.Chrome()

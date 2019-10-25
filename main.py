@@ -1,10 +1,11 @@
 # image detection and ranking images to find the best matching text
 from Image_Detection import label_detection
 import pandas as pd
-data_path = "./Database/database.xls"
+data_path = "/Users/ashivalagar/Desktop/NTUOSS-MemeItWorkshop/Database/database.xls"
 data = pd.read_excel(data_path)
-labels = data['Labels'].tolist()
-text = data['Text'].tolist()
+print(data)
+labels = data['Unnamed: 1'].tolist()
+text = data['Unnamed: 2'].tolist()
 
 # importing library to write text onto an image
 from Image_Writing import make_meme
@@ -74,8 +75,8 @@ def handle_images(update,context):
     picture_text = best_text(labels)
 
     # make an image with the caption
-    make_meme("",picture_text,downloaded_file)
-    make_meme(picture_text,"",downloaded_file,2)
+    make_meme(picture_text,downloaded_file,True)
+    make_meme(picture_text,downloaded_file,False,2)
     
     # sending the image over telegram bot
     context.bot.send_photo(chat_id=update.message.chat_id, photo=open("./Completed/output1.png", 'rb'))

@@ -12,7 +12,7 @@ def give_path(path):
     return(paths)
 
 if __name__ == "__main__":
-    image_paths = give_path("./Web_Scraping/images")
+    image_paths = give_path("/Users/ashivalagar/Desktop/images")
 
     database_workbook = openpyxl.Workbook()
     database = database_workbook.active

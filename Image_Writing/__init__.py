@@ -1,42 +1,41 @@
-from PIL import ImageFont,Image,ImageDraw
+def make_meme(string,filename,isWhite=True, optional=1):
+	from PIL import ImageFont,Image,ImageDraw
+	from math import ceil
+	def char_per_line(imgWidth, padding,fontSize):
+		char_num = ceil(((0.9*imgWidth-(2*padding))/fontSize))
+		return char_num
 
-def make_meme(topString, bottomString, filename,optional=1):
+	def add_newline_char(caption,line_size):
+		temp = caption.split(' ')
+		counter = 0
+		output = ''
+		for i in temp:
+			counter+=len(i)
+			if(counter>line_size):
+				output+=i+'\n'
+				counter = 0
+			else:
+				output+=i+' '
+		return output
+	string = string.replace('\n',' ')
 
-	#Opening the image and quantifying its size.
-	img = Image.open(filename)
-	imageSize = img.size
-
-	# find biggest font size that works
-	fontSize = int(imageSize[1]/5)
-	font = ImageFont.truetype("/Library/Fonts/Impact.ttf", fontSize)
-	topTextSize = font.getsize(topString)
-	bottomTextSize = font.getsize(bottomString)
-	while topTextSize[0] > imageSize[0]-20 or bottomTextSize[0] > imageSize[0]-20:
-		fontSize = fontSize - 1
-		font = ImageFont.truetype("/Library/Fonts/Impact.ttf", fontSize)
-		topTextSize = font.getsize(topString)
-		bottomTextSize = font.getsize(bottomString)
-
-	# find top centered position for top text
-	topTextPositionX = (imageSize[0]/2) - (topTextSize[0]/2)
-	topTextPositionY = 0
-	topTextPosition = (topTextPositionX, topTextPositionY)
-
-	# find bottom centered position for bottom text
-	bottomTextPositionX = (imageSize[0]/2) - (bottomTextSize[0]/2)
-	bottomTextPositionY = imageSize[1] - bottomTextSize[1]
-	bottomTextPosition = (bottomTextPositionX, bottomTextPositionY)
-
+	img =  Image.open(filename)
 	draw = ImageDraw.Draw(img)
-
-	# draw outlines
-	# there may be a better way
-	outlineRange = int(fontSize/15)
-	for x in range(-outlineRange, outlineRange+1):
-		for y in range(-outlineRange, outlineRange+1):
-			draw.text((topTextPosition[0]+x, topTextPosition[1]+y), topString, (0,0,0), font=font)
-			draw.text((bottomTextPosition[0]+x, bottomTextPosition[1]+y), bottomString, (0,0,0), font=font)
-
-	draw.text(topTextPosition, topString, (255,255,255), font=font)
-	draw.text(bottomTextPosition, bottomString, (255,255,255), font=font)
+	imageSize = img.size
+	fontRatio = 0.03
+	paddingRatio = 0.05
+	fontSize = int(imageSize[1]*fontRatio)
+	font = ImageFont.truetype("/Library/Fonts/Impact.ttf", fontSize)
+	padding = ceil(paddingRatio*imageSize[0])
+	char_num = char_per_line(imageSize[0], padding, fontSize)
+	string = add_newline_char(string,char_num)
+	pos = tuple(map(lambda x: x*paddingRatio,imageSize))
+	if(isWhite):
+		colour=(255,255,255,255)
+	else:
+		colour=(0,0,0,255)
+	draw.text(pos,string, font=font, fill=colour)
 	img.save("Completed/output"+str(optional)+".png")
+
+if __name__ == "__main__":
+	make_meme("/Users/ashivalagar/Desktop/NTUOSS-MemeItWorkshop/Completed/output2.png".replace('/',' ').replace('-',' '),'/Users/ashivalagar/Desktop/NTUOSS-MemeItWorkshop/Completed/output2.png',True ,6)

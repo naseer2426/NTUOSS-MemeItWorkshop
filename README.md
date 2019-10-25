@@ -121,6 +121,61 @@ The dirty work, over here we are making our database of memes! We will be proces
 
 ### Processing images
 
+The processing of images essentially consists of two parts. Feature detection/extraction and getting image captions. 
+
+For the feature detection we are going to use opencv to import the GoogLeNet Caffe Model by Berkeley Vision and Learning Center. It is trained on the ImageNet dataset and can classify images into over a 1000 categories.
+
+First we need to download the CaffeModel. We can do so [here](https://drive.google.com/drive/folders/14eEtJSeXXSDLq4ct6zgCq2JUvhhigQXS?usp=sharing).
+
+After doing so we may carry on with writing our function for the feature detection as seen below,
+
+```python
+def label_detection(image_path):
+    labels ='./model/synset_words.txt'
+    prototxt = './model/bvlc_googlenet.prototxt'
+    model = './model/bvlc_googlenet.caffemodel'
+  
+    image = cv2.imread(image_path)
+    
+    rows = open(labels).read().strip().split("\n")
+    classes = [r[r.find(" ") + 1:].split(",")[0] for r in rows]
+    
+    blob = cv2.dnn.blobFromImage(image, 1, (224, 224), (104, 117, 123))
+    
+    net = cv2.dnn.readNetFromCaffe(prototxt, model)
+    
+    net.setInput(blob)
+    preds = net.forward()
+    
+    idxs = np.argsort(preds[0])[::-1][:5]
+
+    output_labels =  []
+    for (i, idx) in enumerate(idxs):
+        output_labels.append(classes[idx])
+        
+    return output_labels
+```
+
+For more illustration on each aspect of this function, please visit the source code [here](https://github.com/ABHINAV112/NTUOSS-MemeItWorkshop/blob/master/Image_Detection/detector.ipynb).
+
+Now having obtained a way to get the features of each image, we may now move on to performing OCR. For this we use pytesseract. 
+
+OCR using pytesseract is fairly simple. And can be summed up by the function below,
+
+```python
+def character_extractor(image_path):
+    image = cv2.imread(image_path)
+    
+    text = pytesseract.image_to_string(image)
+    
+    text = text.replace('\n', " ")
+    
+    return text
+```
+
+Now we can go to using these functions to make our database.
+
+
 ### Saving features into the CSV
 
 ---

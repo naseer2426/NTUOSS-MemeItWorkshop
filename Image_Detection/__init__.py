@@ -3,11 +3,17 @@ import numpy as np
 import argparse
 import time
 import cv2
+import pytesseract
 
 
 def label_detection(image_path):
+	#contains a list of all the labels
 	labels = './Image_Detection/model/synset_words.txt'
+
+	#config file that defines the model characteristics
 	prototxt = './Image_Detection/model/bvlc_googlenet.prototxt'
+
+	#contains the actual weights of each layer of the model
 	model = './Image_Detection/model/bvlc_googlenet.caffemodel'
 
 	# load the input image from disk
@@ -19,7 +25,7 @@ def label_detection(image_path):
 
 	# our CNN requires fixed spatial dimensions for our input image(s)
 	# so we need to ensure it is resized to 224x224 pixels while
-	# performing mean subtraction (104, 117, 123) to normalize the input;
+	# performing mean subtraction (104, 117, 123) to normalize the input.. we get these values from Image Net training set
 	# after executing this command our "blob" now has the shape:
 	# (1, 3, 224, 224)
 	blob = cv2.dnn.blobFromImage(image, 1, (224, 224), (104, 117, 123))
@@ -30,9 +36,7 @@ def label_detection(image_path):
 	# set the blob as input to the network and perform a forward-pass to
 	# obtain our output classification
 	net.setInput(blob)
-	start = time.time()
 	preds = net.forward()
-	end = time.time()
 
 	# sort the indexes of the probabilities in descending order (higher
 	# probabilitiy first) and grab the top-5 predictions
@@ -41,30 +45,21 @@ def label_detection(image_path):
 	# loop over the top-5 predictions and display them
 	output_labels =  []
 	for (i, idx) in enumerate(idxs):
-		# display the predicted label + associated probability to the
-		# console	
 		output_labels.append(classes[idx])
 
 	return output_labels
 
 def detect_text(image_path):
-    """Detects text in the file."""
-    from google.cloud import vision
-    import io
-    client = vision.ImageAnnotatorClient()
-
-    with io.open(image_path, 'rb') as image_file:
-        content = image_file.read()
-
-    image = vision.types.Image(content=content)
-
-    response = client.text_detection(image=image)
-    texts = response.text_annotations
-    try:
-        out=(texts[0].description)
-    except:
-        out = ""
-    return out
+    
+    #loading image from disk
+    image = cv2.imread(image_path)
+    
+    #using pytesseract to run optical character recognition
+    text = pytesseract.image_to_string(image)
+    
+    text = text.replace('\n', " ")
+    
+    return text
 
 def final_output(path):
 	out = dict()

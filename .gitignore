@@ -1,4 +1,4 @@
-./.vscode
+.vscode
 
 ./image_detection/env
 ./image_detection/images/**
